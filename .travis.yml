@@ -21,3 +21,17 @@ after_success:
   - docker push kkteng/multi-nginx
   - docker push kkteng/multi-server
   - docker push kkteng/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "multi-docker"
+  env: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-618300318837"
+  bucket_path: "docker-multi"
+  on:
+    branch: master 
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+

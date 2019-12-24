@@ -1,0 +1,36 @@
+{
+  "AWSEBDockerrunVersion":2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "kkteng/multi-client",
+      "hostname": "client",
+      "essential": false 
+    },
+    {
+      "name": "server",
+      "image": "kkteng/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "kkteng/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "kkteng/multi-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"]
+    }
+  ]
+}
